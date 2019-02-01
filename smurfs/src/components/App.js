@@ -38,20 +38,39 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>SMURFS DATABASE</h1>
-        <form onSubmit={this.addSmurf}>
-          <input value={this.state.name} onChange={this.handleChanges} name="name"/>
-          <input value={this.state.age} onChange={this.handleChanges} name="age" />
-          <input value={this.state.height} onChange={this.handleChanges} name="height" />
-          <button>Add Smurf</button>
-        </form>
-          {this.props.smurfs.map( (smurf, index) => (
-            <div key={index}>
-              <h3>{smurf.name}</h3>
-              <p>{smurf.age}</p>
-              <p>{smurf.height}</p>
-            </div>
-          ))}
+        <nav>
+          <div className="nav-wrapper #2196f3 blue">
+            <a href="#" className="brand-logo center">Smurf Database</a>
+          </div>
+        </nav>
+        <div className="container" style={{margin: "40px auto"}}>
+          <form onSubmit={this.addSmurf}>
+            <input placeholder="Name" value={this.state.name} onChange={this.handleChanges} name="name"/>
+            <input placeholder="Age" value={this.state.age} onChange={this.handleChanges} name="age" />
+            <input placeholder="Height" value={this.state.height} onChange={this.handleChanges} name="height" />
+            <button style={{margin: "40px auto"}} className="waves-effect #2196f3 blue btn">Add Smurf</button>
+          </form>
+          </div>
+          <div className="container" style={{display:"flex", flexWrap:"wrap-reverse"}}>
+            {this.props.smurfs.map( (smurf, index) => (
+              <div >
+                <div key={index} class="row">
+                  <div class="col s12">
+                    <div class="card #2196f3 blue">
+                      <div class="card-content white-text">
+                        <span class="card-title">{smurf.name}</span>
+                        <p>Age: {smurf.age}</p>
+                        <p>Height: {smurf.height}</p>
+                      </div>
+                      <div class="card-action">
+                      <button className="waves-effect #ff5252 red accent-2 btn">Delete Smurf</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
       </div>
     );
   }
