@@ -2,7 +2,7 @@
   Be sure to import in all of the action types from `../actions`
 */
 
-import { GETTING_SMURFS, GOT_SMURFS } from '../actions/index';
+import { GETTING_SMURFS, GOT_SMURFS, ADDED_SMURF } from '../actions/index';
 
 /*
  Your initial/default state for this project could *Although does not have to* look a lot like this
@@ -46,7 +46,13 @@ export const reducer = (state = initialState, action) => {
           smurfs: action.payload,
           fetchingSmurfs: false
         }
-    default:
-      return state
+      case ADDED_SMURF:
+        return {
+          ...state,
+          smurfs: action.payload,
+          fetchingSmurfs: false
+        }
+      default:
+        return state
   }
 }
