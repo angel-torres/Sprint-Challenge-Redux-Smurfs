@@ -9,16 +9,36 @@ import { getSmurfs } from '../actions'
  `How do I ensure that my component links the state to props?`
  */
 class App extends Component {
+  state = {
+    name: '',
+    age: '',
+    height: ''
+  }
 
   componentDidMount() {
     this.props.getSmurfs()
   }
 
+  handleChanges = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
+  addSmurf = () => {
+    
+  }
+
   render() {
-    console.log(this.props)
     return (
       <div className="App">
         <h1>SMURFS DATABASE</h1>
+        <form onSubmit={this.addSmurf}>
+          <input value={this.state.name} onChange={this.handleChanges} name="name"/>
+          <input value={this.state.age} onChange={this.handleChanges} name="age" />
+          <input value={this.state.height} onChange={this.handleChanges} name="height" />
+          <button>Add Smurf</button>
+        </form>
           {this.props.smurfs.map( smurf => (
             <div>
               <h3>{smurf.name}</h3>
