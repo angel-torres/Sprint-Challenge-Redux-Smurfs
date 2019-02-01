@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
-import { getSmurfs, addSmurf } from '../actions'
+import { getSmurfs, addSmurf, deleteSmurf } from '../actions'
 /*
  to wire this component up you're going to need a few things.
  I'll let you do this part on your own. 
@@ -35,6 +35,11 @@ class App extends Component {
     })
   }
 
+  deleteSmurf = (e, id) => {
+    console.log(id)
+    this.props.deleteSmurf(id)
+  }
+
   render() {
     return (
       <div className="App">
@@ -63,7 +68,7 @@ class App extends Component {
                         <p>Height: {smurf.height}</p>
                       </div>
                       <div class="card-action">
-                      <button className="waves-effect #ff5252 red accent-2 btn">Delete Smurf</button>
+                      <button onClick={ e => this.deleteSmurf(e, smurf.id)} className="waves-effect #ff5252 red accent-2 btn">Delete Smurf</button>
                       </div>
                     </div>
                   </div>
@@ -80,4 +85,4 @@ const mapStateToProps = state => ({
   smurfs: state.smurfs
 })
 
-export default connect(mapStateToProps, { getSmurfs, addSmurf })(App);
+export default connect(mapStateToProps, { getSmurfs, addSmurf, deleteSmurf })(App);

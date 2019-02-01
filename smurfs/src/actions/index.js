@@ -7,7 +7,7 @@ import axios from 'axios';
 export const GETTING_SMURFS = 'ADD_SMURF';
 export const GOT_SMURFS = 'GOTSMURFS'
 export const ADDED_SMURF = 'ADDED_SMURF';
-
+export const DELETED_SMURF = 'DELETED_SMURF';
 
 /*
   For this project you'll need at least 2 action creators for the main portion,
@@ -33,4 +33,12 @@ export const addSmurf = (smurf) => dispatch => {
   axios
   .post('http://localhost:3333/smurfs', smurf)
   .then( res => dispatch({type: ADDED_SMURF, payload: res.data}))
+}
+
+export const deleteSmurf = (id) => dispatch => {
+  dispatch({type: GETTING_SMURFS});
+  axios
+  .delete(`http://localhost:3333/smurfs/${id}`)
+  .then(res => dispatch({type: DELETED_SMURF, payload: res.data}))
+  .catch(err => console.log(err))
 }
